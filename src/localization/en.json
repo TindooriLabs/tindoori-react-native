@@ -1,0 +1,26 @@
+{
+  "Auth": {
+    "subtitle": "love found in translation",
+    "createAccountButton": "Create Account",
+    "loginButton": "Log In"
+  },
+  "Shared": {
+    "termsAndPolicy": "By continuing, you agree to our ?Terms of Service? and ?Policy",
+    "conitnueButton": "Continue",
+    "emailLabel": "Email",
+    "passwordLabel": "Password"
+  },
+  "Register":{
+    "title": "Create an account",
+    "confirmPasswordLabel": "Confirm password",
+    "OAuthText": "or sign up with",
+    "passwordLengthGuideline": "At least 8 characters",
+    "passwordNumberGuideline": "Contains one number",
+    "passwordUpperCaseGuideline": "Contains one upper case",
+    "passwordSpecialCharacterGuideline": "Contains one special character"
+  },
+  "Login":{
+    "title":"Sign in",
+    "OAuthText": "or sign in with"
+  }
+}

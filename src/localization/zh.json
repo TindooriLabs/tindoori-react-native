@@ -1,0 +1,26 @@
+{
+  "Auth": {
+    "subtitle": "在翻译中发现爱",
+    "createAccountButton": "创建账户",
+    "loginButton": "登录"
+  },
+  "Shared": {
+    "termsAndPolicy": "继续即表示您同意我们的?服务条款?和?政策",
+    "conitnueButton": "继续",
+    "emailLabel": "邮箱",
+    "passwordLabel": "密码"
+  },
+  "Register":{
+    "title": "创建帐户",
+    "confirmPasswordLabel": "确认密码",
+    "OAuthText": "或用以下方式注册",
+    "passwordLengthGuideline": "至少 8 个字符",
+    "passwordNumberGuideline": "包含1个数字",
+    "passwordUpperCaseGuideline": "包含一个大写字母",
+    "passwordSpecialCharacterGuideline": "包含1个特殊字符"
+  },
+  "Login":{
+    "title":"登录",
+    "OAuthText": "或使用以下方式登录"
+  }
+}
