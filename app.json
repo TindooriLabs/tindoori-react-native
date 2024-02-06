@@ -1,0 +1,29 @@
+{
+  "expo": {
+    "name": "boilerplate",
+    "slug": "boilerplate",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#a6f5c5"
+    },
+    "assetBundlePatterns": ["**/*"],
+    "ios": {
+      "icon": "./assets/appstoreAppIcon.png",
+      "supportsTablet": true,
+      "bundleIdentifier": "com.boilerplate.boilerplate"
+    },
+    "android": {
+      "icon": "./assets/playstoreAppIcon.png",
+      "package": "com.boilerplate.boilerplate"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "51a3e53f-f925-48be-b837-fcc837db4c23"
+      }
+    }
+  }
+}
