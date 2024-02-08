@@ -4,11 +4,12 @@ import { useForm, Controller } from 'react-hook-form'
 import { heightPercentageToDP as hp } from 'react-native-responsive-screen'
 import S from './styles'
 import { RadioButton } from 'react-native-paper'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import T from 'theme'
 import { ContinueButton } from 'components/ContinueButton'
 import i18n from 'localization/i18n'
 import type { MainNavigatorProps } from 'routes/MainNavigator/types'
+import * as SecureStore from 'expo-secure-store'
 
 export const AppLanguage = ({ navigation }: MainNavigatorProps) => {
   const {
@@ -20,8 +21,18 @@ export const AppLanguage = ({ navigation }: MainNavigatorProps) => {
       appLanguage: ''
     }
   })
-  const onSubmit = (data: any) => {
+  const getAppLanguage = async () => {
+    const language = await SecureStore.getItemAsync('isLanguageSelected')
+    if (language) {
+      navigation.navigate('Auth')
+    }
+  }
+  useEffect(() => {
+    getAppLanguage()
+  }, [])
+  const onSubmit = async (data: any) => {
     i18n.changeLanguage(data.appLanguage)
+    await SecureStore.setItemAsync('isLanguageSelected', 'true')
     navigation.navigate('Auth')
   }
   const radioOptions = [

@@ -5,12 +5,18 @@ import { TermsAndPolicy } from 'components/TermsAndPolicy'
 import { ContinueButton } from 'components/ContinueButton'
 import { useTranslation } from 'react-i18next'
 import type { MainNavigatorProps } from 'routes/MainNavigator/types'
+import { useEffect } from 'react'
 
 export const Auth = ({ navigation }: MainNavigatorProps) => {
   const { t } = useTranslation()
   const onSubmit = () => {
     navigation.navigate('Register')
   }
+  useEffect (()=>{
+    navigation.addListener('beforeRemove', (e) =>{
+      e.preventDefault();
+    })
+  }, [])
   return (
     <View style={S.container}>
       <Image

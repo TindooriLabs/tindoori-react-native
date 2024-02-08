@@ -8,14 +8,24 @@ import type { MainNavigatorParamList } from './types'
 const { Navigator, Screen } =
   createNativeStackNavigator<MainNavigatorParamList>()
 
-export const MainNavigator = () => (
-  <Navigator
-    initialRouteName="AppLanguage"
-    screenOptions={{ headerTitle: '', headerTransparent: true }}
-  >
-    <Screen name="AppLanguage" component={AppLanguage} />
-    <Screen name="Auth" component={Auth} />
-    <Screen name="Login" component={Login} />
-    <Screen name="Register" component={Register} />
-  </Navigator>
-)
+export const MainNavigator = () => {
+ 
+
+  return (
+    <Navigator
+      screenOptions={{ headerTitle: '', headerTransparent: true }}
+      initialRouteName='AppLanguage'
+    >
+      <Screen name="AppLanguage" component={AppLanguage} />
+      <Screen
+        name="Auth"
+        component={Auth}
+        options={{
+          headerBackVisible: false
+        }}
+      />
+      <Screen name="Login" component={Login} />
+      <Screen name="Register" component={Register} />
+    </Navigator>
+  )
+}
