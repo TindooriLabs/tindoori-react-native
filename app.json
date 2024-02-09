@@ -13,6 +13,9 @@
     "assetBundlePatterns": ["**/*"],
     "ios": {
       "icon": "./assets/appstoreAppIcon.png",
+      "config": {
+        "usesNonExemptEncryption": false
+      },
       "supportsTablet": true,
       "bundleIdentifier": "com.boilerplate.boilerplate"
     },
@@ -22,7 +25,7 @@
     },
     "extra": {
       "eas": {
-        "projectId": "51a3e53f-f925-48be-b837-fcc837db4c23"
+        "projectId": "1bddd219-fb44-4de1-8c45-b977dbf42876"
       }
     }
   }

@@ -7,7 +7,7 @@ import {
   Nunito_800ExtraBold,
   useFonts
 } from '@expo-google-fonts/nunito'
-import { Inter_500Medium } from '@expo-google-fonts/inter'
+import { Inter_500Medium, Inter_400Regular } from '@expo-google-fonts/inter'
 import { Ionicons } from '@expo/vector-icons'
 import * as SplashScreen from 'expo-splash-screen'
 
@@ -23,7 +23,8 @@ const MainProvider = ({ children }: { children: ReactNode }) => {
     Nunito_600SemiBold,
     Nunito_700Bold,
     Nunito_800ExtraBold,
-    Inter_500Medium
+    Inter_500Medium,
+    Inter_400Regular
   })
 
   const onLayoutRootView = useCallback(() => {
