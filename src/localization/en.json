@@ -22,5 +22,8 @@
   "Login":{
     "title":"Sign in",
     "OAuthText": "or sign in with"
+  },
+  "PhoneNumberInput":{
+    "title": "Enter your phone number"
   }
 }

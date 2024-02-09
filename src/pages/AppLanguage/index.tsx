@@ -21,15 +21,7 @@ export const AppLanguage = ({ navigation }: MainNavigatorProps) => {
       appLanguage: ''
     }
   })
-  const getAppLanguage = async () => {
-    const language = await SecureStore.getItemAsync('isLanguageSelected')
-    if (language) {
-      navigation.navigate('Auth')
-    }
-  }
-  useEffect(() => {
-    getAppLanguage()
-  }, [])
+
   const onSubmit = async (data: any) => {
     i18n.changeLanguage(data.appLanguage)
     await SecureStore.setItemAsync('isLanguageSelected', 'true')

@@ -7,10 +7,10 @@ import { TermsAndPolicy } from 'components/TermsAndPolicy'
 import { OAuth } from 'components/OAuth'
 import { Email } from 'components/Email'
 import { Password } from 'components/Password'
-import type { MainNavigatorProps } from 'routes/MainNavigator/types'
 import { useTranslation } from 'react-i18next'
+import type { LoginNavigatorProps } from 'routes/LoginNavigator/types'
 
-export const Login = ({ navigation }: MainNavigatorProps) => {
+export const Login = ({ navigation }: LoginNavigatorProps) => {
   const { t } = useTranslation()
   const {
     control,
