@@ -19,7 +19,8 @@ const styles = StyleSheet.create({
     height: hp('5.69%'),
     borderWidth: wp('0.26%'),
     borderColor: '#CBD2E0',
-    borderRadius: wp('1.03%')
+    borderRadius: wp('1.03%'),
+    paddingLeft: wp('3%')
   },
   passwordContainer: {
     alignItems: 'flex-start',

@@ -59,6 +59,7 @@ export const Register = ({ navigation }: RegisterNavigatorProps) => {
         control={control}
         rules={{
           required: true,
+          pattern: /\S+@\S+\.\S+/,
         }}
         render={({ field: { onChange, onBlur, value } }) => (
           <Email
