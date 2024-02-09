@@ -8,7 +8,6 @@ import {
   useFonts
 } from '@expo-google-fonts/nunito'
 import { Inter_500Medium, Inter_400Regular } from '@expo-google-fonts/inter'
-import { Ionicons } from '@expo/vector-icons'
 import * as SplashScreen from 'expo-splash-screen'
 
 const S = StyleSheet.create({

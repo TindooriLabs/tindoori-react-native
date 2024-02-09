@@ -9,7 +9,6 @@ import { OAuth } from "components/OAuth";
 import { useState } from "react";
 import { Email } from "components/Email";
 import { Password } from "components/Password";
-import type { MainNavigatorProps } from "routes/MainNavigator/types";
 import { useTranslation } from "react-i18next";
 import i18n from "localization/i18n";
 import * as SecureStore from "expo-secure-store";
