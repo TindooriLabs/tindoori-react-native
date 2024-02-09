@@ -1,4 +1,4 @@
-import { View, Text, Image, TextInput, StyleSheet } from "react-native";
+import { View, Text, Image, TextInput } from "react-native";
 import S from "./styles";
 import { Title } from "components/Title";
 import { useForm, Controller } from "react-hook-form";

@@ -1,7 +1,6 @@
 import { Pressable, Text, View, Image } from 'react-native'
 import S from './styles'
 import {
-  heightPercentageToDP as hp,
   widthPercentageToDP as wp
 } from 'react-native-responsive-screen'
 import type { OAuthProps } from './types'
