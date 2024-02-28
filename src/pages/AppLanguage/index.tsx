@@ -1,53 +1,57 @@
-import { View, Text } from 'react-native'
+import { View, Text } from "react-native";
 
-import { useForm, Controller } from 'react-hook-form'
-import { heightPercentageToDP as hp } from 'react-native-responsive-screen'
-import S from './styles'
-import { RadioButton } from 'react-native-paper'
-import { useEffect, useState } from 'react'
-import T from 'theme'
-import { ContinueButton } from 'components/ContinueButton'
-import i18n from 'localization/i18n'
-import type { MainNavigatorProps } from 'routes/MainNavigator/types'
-import * as SecureStore from 'expo-secure-store'
+import { useForm, Controller } from "react-hook-form";
+import { heightPercentageToDP as hp } from "react-native-responsive-screen";
+import S from "./styles";
+import { RadioButton } from "react-native-paper";
+import { useEffect, useState } from "react";
+import T from "theme";
+import { ContinueButton } from "components/ContinueButton";
+import i18n from "localization/i18n";
+import type { MainNavigatorProps } from "routes/MainNavigator/types";
+import * as SecureStore from "expo-secure-store";
+import { useTranslation } from "react-i18next";
 
 export const AppLanguage = ({ navigation }: MainNavigatorProps) => {
+  const { t } = useTranslation();
   const {
     control,
     handleSubmit,
-    formState: { isDirty, isValid }
+    formState: { isDirty, isValid },
   } = useForm({
     defaultValues: {
-      appLanguage: ''
-    }
-  })
+      appLanguage: "",
+    },
+  });
 
   const onSubmit = async (data: any) => {
-    i18n.changeLanguage(data.appLanguage)
-    await SecureStore.setItemAsync('isLanguageSelected', 'true')
-    navigation.navigate('Auth')
-  }
+    i18n.changeLanguage(data.appLanguage);
+    await SecureStore.setItemAsync("isLanguageSelected", "true");
+    navigation.navigate("Auth");
+  };
+  const optionOne = `🇺🇸 ${t("AppLanguage.optionOne")}`;
+  const optionTwo = `🇨🇳 ${t("AppLanguage.optionTwo")}`;
   const radioOptions = [
-    { value: 'en', label: '🇺🇸 English' },
-    { value: 'zh', label: '🇨🇳 Mandarin' }
-  ]
-  const [selected, setSelected] = useState('none')
+    { value: "en", label: optionOne },
+    { value: "zh", label: optionTwo },
+  ];
+  const [selected, setSelected] = useState("none");
 
   return (
     <View style={S.container}>
-      <Text style={S.title}>Please select your preferred language:</Text>
+      <Text style={S.title}>{t("AppLanguage.title")}</Text>
       <Controller
         control={control}
         rules={{ required: true }}
         render={({ field: { onChange, value } }) => (
           <RadioButton.Group
-            onValueChange={value => {
-              onChange(value)
-              setSelected(value)
+            onValueChange={(value) => {
+              onChange(value);
+              setSelected(value);
             }}
             value={value}
           >
-            {radioOptions.map(option => (
+            {radioOptions.map((option) => (
               <RadioButton.Item
                 key={option.value}
                 label={option.label}
@@ -57,15 +61,15 @@ export const AppLanguage = ({ navigation }: MainNavigatorProps) => {
                   fontFamily:
                     selected === option.value
                       ? T.fonts.familiesWeights.nunito.bold
-                      : T.fonts.familiesWeights.nunito.regular
+                      : T.fonts.familiesWeights.nunito.regular,
                 }}
                 style={{
                   ...S.radioOptionContainer,
                   backgroundColor:
                     selected === option.value
-                      ? 'rgba(148, 228, 180, 0.2)'
-                      : '#FFFFFF',
-                  marginBottom: option.value === 'en' ? hp('2.84%') : 0
+                      ? "rgba(148, 228, 180, 0.2)"
+                      : "#FFFFFF",
+                  marginBottom: option.value === "en" ? hp("2.84%") : 0,
                 }}
                 uncheckedColor="rgba(113, 128, 150, 0.7)"
                 color="#94E4B4"
@@ -76,11 +80,11 @@ export const AppLanguage = ({ navigation }: MainNavigatorProps) => {
         name="appLanguage"
       />
       <ContinueButton
-        marginTop="27.25%"
+        isBottom={true}
         buttonText="Continue"
         disabled={!isDirty || !isValid}
         handleSubmit={handleSubmit(onSubmit)}
       />
     </View>
-  )
-}
+  );
+};

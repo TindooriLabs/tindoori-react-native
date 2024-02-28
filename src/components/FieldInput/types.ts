@@ -1,9 +1,11 @@
-export type PasswordProps = {
+export type FieldInputProps = {
     onBlur: any
     onKeyPress: any
     value: string
     onChange: any
+    label: string
     onChangePassword?: any
-    label:string
+    isSecure: boolean
+    marginTop: string
   }
   

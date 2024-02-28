@@ -1,4 +1,9 @@
 {
+  "AppLanguage": {
+    "title": "请选择您的app语言：",
+    "optionOne": "英语",
+    "optionTwo": "普通话"
+  },
   "Auth": {
     "subtitle": "在翻译中发现爱",
     "createAccountButton": "创建账户",
@@ -8,9 +13,11 @@
     "termsAndPolicy": "继续即表示您同意我们的?服务条款?和?政策",
     "conitnueButton": "继续",
     "emailLabel": "邮箱",
-    "passwordLabel": "密码"
+    "passwordLabel": "密码",
+    "resendCodeButton": "重新发送验证码",
+    "resendCodeTimerText": "重新发送代码"
   },
-  "Register":{
+  "Register": {
     "title": "创建帐户",
     "confirmPasswordLabel": "确认密码",
     "OAuthText": "或用以下方式注册",
@@ -19,8 +26,19 @@
     "passwordUpperCaseGuideline": "包含一个大写字母",
     "passwordSpecialCharacterGuideline": "包含1个特殊字符"
   },
-  "Login":{
-    "title":"登录",
-    "OAuthText": "或使用以下方式登录"
+  "Login": {
+    "title": "登录",
+    "OAuthText": "或使用以下方式登录",
+    "forgotPasswordText": "忘记密码？"
+  },
+  "PhoneNumberInput": {
+    "title": "输入您的电话号码",
+    "country": "美国",
+    "verificationText": "我们将向此号码发送代码以进行验证"
+  },
+  "PhoneNumberVerification": {
+    "title": "验证您的电话号码",
+    "subtextPartOne": "我们已将代码发送至",
+    "subtextPartTwo": "请在下面输入。"
   }
 }
