@@ -1,4 +1,4 @@
-import { View, Text } from "react-native";
+import { View, Text, Platform, Alert } from "react-native";
 import { useForm, Controller } from "react-hook-form";
 import { widthPercentageToDP as wp } from "react-native-responsive-screen";
 import S from "./styles";
@@ -7,15 +7,19 @@ import { ContinueButton } from "components/ContinueButton";
 import { Title } from "components/Title";
 import { OAuth } from "components/OAuth";
 import { useState } from "react";
-import { Email } from "components/Email";
-import { Password } from "components/Password";
 import { useTranslation } from "react-i18next";
 import i18n from "localization/i18n";
-import * as SecureStore from "expo-secure-store";
 import type { RegisterNavigatorProps } from "routes/RegisterNavigator/types";
+import { registerUser } from "api/auth";
+import { errorHandler } from "api/errorHandler";
+import { ModalActivityIndicator } from "../../components/ModalActivityIndicator";
+import * as Application from "expo-application";
+import { setItem } from "util/secureStore";
+import { FieldInput } from "components/FieldInput";
 
 export const Register = ({ navigation }: RegisterNavigatorProps) => {
   const { t } = useTranslation();
+  const [loading, setLoading] = useState(false);
   const {
     control,
     handleSubmit,
@@ -27,11 +31,42 @@ export const Register = ({ navigation }: RegisterNavigatorProps) => {
       confirmPassword: "",
     },
   });
+  const deviceType = Platform.OS;
+
   const onSubmit = async (data: any) => {
-    const userInfo = { email: data.email, password: data.password };
-    await SecureStore.setItemAsync("userInfo", JSON.stringify(userInfo));
-    navigation.navigate("PhoneNumberInput");
+    try {
+      setLoading(true);
+      let deviceIdObj = {};
+
+      if (deviceType === "android") {
+        deviceIdObj = { androidDeviceId: Application.getAndroidId() };
+      } else if (deviceType === "ios") {
+        deviceIdObj = { appleDeviceId: Application.getIosIdForVendorAsync() };
+      }
+
+      const response = await registerUser({
+        email: data.email,
+        password: data.password,
+        ...deviceIdObj,
+      });
+
+      setLoading(false);
+
+      await Promise.all([
+        setItem("accessToken", response.data.user),
+        setItem("refreshToken", response.data.refreshToken),
+        setItem("userId", response.data.userId),
+      ]);
+
+      navigation.navigate("PhoneNumberInput");
+    } catch (error: any) {
+      setLoading(false);
+
+      let errorData = errorHandler(error);
+      Alert.alert("Error", errorData.message);
+    }
   };
+
   const [passwordLengthValid, setPasswordLengthValid] = useState(false);
   const [passwordContainsNumber, setPasswordContainsNumber] = useState(false);
   const [passwordContainsUppercase, setPasswordContainsUppercase] =
@@ -51,8 +86,15 @@ export const Register = ({ navigation }: RegisterNavigatorProps) => {
     setPasswordContainsUppercase(/[A-Z]/.test(text));
     setPasswordContainsSC(/[!@#$%^&*()\-+={}[\]:;"'<>,.?\/|\\]/.test(text));
   };
+
   return (
     <View style={S.container}>
+      <ModalActivityIndicator
+        show={loading}
+        color="#94E4B4"
+        size={wp("25%")}
+        showText={false}
+      />
       <Title titleText={t("Register.title")} />
       <Controller
         control={control}
@@ -61,7 +103,7 @@ export const Register = ({ navigation }: RegisterNavigatorProps) => {
           pattern: /\S+@\S+\.\S+/,
         }}
         render={({ field: { onChange, onBlur, value } }) => (
-          <Email
+          <FieldInput
             onBlur={onBlur}
             onKeyPress={(e: { nativeEvent: { key: string } }) => {
               if (e.nativeEvent.key === " ") {
@@ -71,6 +113,8 @@ export const Register = ({ navigation }: RegisterNavigatorProps) => {
             value={value}
             onChange={onChange}
             label={t("Shared.emailLabel")}
+            isSecure={false}
+            marginTop="5.21%"
           />
         )}
         name="email"
@@ -84,7 +128,7 @@ export const Register = ({ navigation }: RegisterNavigatorProps) => {
         }}
         render={({ field: { onChange, onBlur, value } }) => (
           <>
-            <Password
+            <FieldInput
               onBlur={onBlur}
               onKeyPress={(e: { nativeEvent: { key: string } }) => {
                 if (e.nativeEvent.key === " ") {
@@ -95,6 +139,8 @@ export const Register = ({ navigation }: RegisterNavigatorProps) => {
               onChangePassword={onChangePassword}
               value={value}
               label={t("Shared.passwordLabel")}
+              isSecure={true}
+              marginTop="4.03%"
             />
             <View
               style={{
@@ -170,7 +216,7 @@ export const Register = ({ navigation }: RegisterNavigatorProps) => {
           validate: (value, formValues) => value === formValues.password,
         }}
         render={({ field: { onChange, onBlur, value } }) => (
-          <Password
+          <FieldInput
             onBlur={onBlur}
             onKeyPress={(e: { nativeEvent: { key: string } }) => {
               if (e.nativeEvent.key === " ") {
@@ -180,11 +226,14 @@ export const Register = ({ navigation }: RegisterNavigatorProps) => {
             onChange={onChange}
             value={value}
             label={t("Register.confirmPasswordLabel")}
+            isSecure={true}
+            marginTop="4.03%"
           />
         )}
         name="confirmPassword"
       />
       <ContinueButton
+        isBottom={false}
         marginTop="4.27%"
         buttonText={t("Shared.conitnueButton")}
         disabled={!isDirty || !isValid}

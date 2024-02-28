@@ -1,6 +1,7 @@
 export type ContinueButtonProps = {
-    marginTop: string
+    marginTop?: string
     buttonText: string
     disabled?: boolean
     handleSubmit?: any
+    isBottom: boolean
   }

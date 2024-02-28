@@ -20,7 +20,6 @@ export const errorHandler = (error: Error | AxiosError) => {
       // Something happened in setting up the request that triggered an Error
       // console.log("Axios Request Setup Error:", error.message);
     }
-
     return {
       message: error.response ? error.response.data.message : error.message,
       status: error.response ? error.response.status : error.code,

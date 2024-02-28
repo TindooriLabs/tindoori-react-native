@@ -1,4 +1,9 @@
 {
+  "AppLanguage": {
+    "title": "Please select your preferred language:",
+    "optionOne": "English",
+    "optionTwo": "Mandarin"
+  },
   "Auth": {
     "subtitle": "love found in translation",
     "createAccountButton": "Create Account",
@@ -8,9 +13,11 @@
     "termsAndPolicy": "By continuing, you agree to our ?Terms of Service? and ?Policy",
     "conitnueButton": "Continue",
     "emailLabel": "Email",
-    "passwordLabel": "Password"
+    "passwordLabel": "Password",
+    "resendCodeButton": "Resend code",
+    "resendCodeTimerText": "Resend Code in"
   },
-  "Register":{
+  "Register": {
     "title": "Create an account",
     "confirmPasswordLabel": "Confirm password",
     "OAuthText": "or sign up with",
@@ -19,11 +26,19 @@
     "passwordUpperCaseGuideline": "Contains one upper case",
     "passwordSpecialCharacterGuideline": "Contains one special character"
   },
-  "Login":{
-    "title":"Sign in",
-    "OAuthText": "or sign in with"
+  "Login": {
+    "title": "Sign in",
+    "OAuthText": "or sign in with",
+    "forgotPasswordText": "Forgot password?"
   },
-  "PhoneNumberInput":{
-    "title": "Enter your phone number"
+  "PhoneNumberInput": {
+    "title": "Enter your phone number",
+    "country": "US",
+    "verificationText": "We will send a code to this number for verification"
+  },
+  "PhoneNumberVerification": {
+    "title": "Enter Code",
+    "subtextPartOne": "We have sent you a code to",
+    "subtextPartTwo": "please enter the code below."
   }
 }

@@ -32,6 +32,16 @@ const styles = StyleSheet.create({
   passwordContainer: {
     alignItems: 'flex-start',
     marginTop: hp('4.03%')
+  },
+  forgotPassword:{
+    marginTop: hp('1.78%'),
+    alignSelf:'flex-end',
+    marginRight: wp('6.41%'),
+    color:'#0167FF',
+    textDecorationLine:'underline',
+    fontFamily: T.fonts.familiesWeights.nunito.regular,
+    fontSize: hp('1.42%'),
+    lineHeight: hp('2.37%'),
   }
 })
 

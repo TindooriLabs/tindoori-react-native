@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
     fontFamily: T.fonts.familiesWeights.inter.regular,
     fontSize: hp("1.42%"),
     lineHeight: hp("2.27%"),
-    color: "#718096"
+    color: "#718096",
   },
   countryCode: {
     marginLeft: wp("3.08%"),

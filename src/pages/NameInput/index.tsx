@@ -1,4 +1,4 @@
-import { View, Text, Image, TextInput, Alert } from "react-native";
+import { View, Text } from "react-native";
 import S from "./styles";
 import { Title } from "components/Title";
 import { widthPercentageToDP as wp } from "react-native-responsive-screen";
@@ -7,12 +7,11 @@ import { ContinueButton } from "components/ContinueButton";
 import { useTranslation } from "react-i18next";
 import type { RegisterNavigatorProps } from "routes/RegisterNavigator/types";
 import { errorHandler } from "api/errorHandler";
-import { getMobile, updateMobile } from "api/user";
 import { useEffect, useState } from "react";
 import { ModalActivityIndicator } from "components/ModalActivityIndicator";
-import { formatPhoneNumber } from "util/phoneNumberFormat";
+import { FieldInput } from "components/FieldInput";
 
-export const PhoneNumberInput = ({ navigation }: RegisterNavigatorProps) => {
+export const NameInput = ({ navigation }: RegisterNavigatorProps) => {
   const { t } = useTranslation();
 
   const {
@@ -22,54 +21,44 @@ export const PhoneNumberInput = ({ navigation }: RegisterNavigatorProps) => {
     setValue,
   } = useForm({
     defaultValues: {
-      phoneNumber: "",
+      firstName: "",
     },
   });
   const [loading, setLoading] = useState(false);
-  useEffect(() => {
-    navigation.addListener("beforeRemove", (e) => {
-      e.preventDefault();
-    });
-  }, []);
 
   useEffect(() => {
-    setLoading(true);
-    getMobile()
-      .then((response) => {
-        if (response.data.mobile && response.data.mobile.length === 11) {
-          setValue(
-            "phoneNumber",
-            formatPhoneNumber(response.data.mobile.substring(1)),
-            {
-              shouldValidate: true,
-              shouldDirty: true,
-            }
-          );
-        }
-        setLoading(false);
-      })
-      .catch((e) => {
-        let errorData = errorHandler(e);
-        Alert.alert("Error", errorData.message);
-        setLoading(false);
-      });
+    // setLoading(true);
+    // getMobile()
+    //   .then((response) => {
+    // if (response.data.mobile && response.data.mobile.length === 11) {
+    //   setValue("phoneNumber", formatPhoneNumber(response.data.mobile.substring(1)), {
+    //     shouldValidate: true,
+    //     shouldDirty: true,
+    //   });
+    // }
+    // setLoading(false);
+    //   })
+    //   .catch((e) => {
+    //     let errorData = errorHandler(e);
+    //     Alert.alert("Error", errorData.message);
+    //     setLoading(false);
+    //   });
   }, []);
 
   const onSubmit = async (data: any) => {
-    setLoading(true);
-    updateMobile({
-      mobile: "1" + data.phoneNumber.replace(/\D/g, ""),
-    })
-      .then((response) => {
-        setLoading(false);
-        navigation.navigate("PhoneNumberVerification");
-      })
-      .catch((error) => {
-        setLoading(false);
-        let errorData = errorHandler(error);
-
-        Alert.alert("Error", errorData.message);
-      });
+    // setLoading(true);
+    // updateMobile({
+    //   mobile: "1" + data.phoneNumber.replace(/\D/g, ''),
+    // })
+    //   .then((response) => {
+    //     setLoading(false);
+    //     navigation.navigate("PhoneNumberVerification");
+    //   })
+    //   .catch((error) => {
+    //     setLoading(false);
+    //     let errorData = errorHandler(error);
+    //     Alert.alert("Error", errorData.message);
+    //   });
   };
 
   return (
@@ -80,8 +69,36 @@ export const PhoneNumberInput = ({ navigation }: RegisterNavigatorProps) => {
         size={wp("25%")}
         showText={false}
       />
-      <Title titleText={t("PhoneNumberInput.title")} />
-      <View style={S.phoneNumberInputView}>
+      <Title titleText="What's your name?" />
+      <Controller
+        control={control}
+        rules={{
+          required: true,
+          pattern: /\S+@\S+\.\S+/,
+        }}
+        render={({ field: { onChange, onBlur, value } }) => (
+          <FieldInput
+            onBlur={onBlur}
+            onKeyPress={(e: { nativeEvent: { key: string } }) => {
+              if (e.nativeEvent.key === " ") {
+                onChange(value.substring(0, value.length - 1));
+              }
+            }}
+            value={value}
+            onChange={onChange}
+            label={"First Name"}
+            isSecure={false}
+            marginTop="4.27%"
+          />
+        )}
+        name="firstName"
+      />
+      <Text style={S.verificationText}>
+        {
+          "This will appear on your profile, and you won’t be able to change it later."
+        }
+      </Text>
+      {/* <View style={S.phoneNumberInputView}>
         <Image
           source={require("../../../assets/usaFlag.png")}
           style={S.usaFlag}
@@ -100,7 +117,7 @@ export const PhoneNumberInput = ({ navigation }: RegisterNavigatorProps) => {
               onBlur={onBlur}
               onChangeText={(text) => {
                 // onChange(text.replace(/[^0-9]/g, ""));
-                onChange(formatPhoneNumber(text));
+                onChange(formatPhoneNumber(text))
               }}
               value={value}
               style={S.phoneNumberText}
@@ -117,7 +134,7 @@ export const PhoneNumberInput = ({ navigation }: RegisterNavigatorProps) => {
       </View>
       <Text style={S.verificationText}>
         {t("PhoneNumberInput.verificationText")}
-      </Text>
+      </Text> */}
       <ContinueButton
         isBottom={true}
         buttonText={t("Shared.conitnueButton")}
