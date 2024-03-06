@@ -41,7 +41,8 @@ export const Register = ({ navigation }: RegisterNavigatorProps) => {
       if (deviceType === "android") {
         deviceIdObj = { androidDeviceId: Application.getAndroidId() };
       } else if (deviceType === "ios") {
-        deviceIdObj = { appleDeviceId: Application.getIosIdForVendorAsync() };
+        let appleDeviceId = await Application.getIosIdForVendorAsync();
+        deviceIdObj = { appleDeviceId };
       }
 
       const response = await registerUser({

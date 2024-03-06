@@ -3,6 +3,7 @@ import CustomTheme from "./theme";
 import { MainNavigator } from "./MainNavigator";
 import { useEffect, useState } from "react";
 import { getCurrentScreen, setCurrentScreen } from "api/user";
+// import { removeItem } from "util/secureStore";
 // import { setItem } from "util/secureStore";
 
 const Routes = () => {
@@ -23,6 +24,7 @@ const Routes = () => {
         // await setItem("accessToken", "");
         // await setItem("refreshToken", "");
         // await setItem("userId", "");
+        // await removeItem("isLanguageSelected");
         const response = await getCurrentScreen();
         if (response.data.currentScreen) {
           if (response.data.isOnboarding) {

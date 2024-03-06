@@ -16,7 +16,7 @@ export const MainNavigator = () => {
   useEffect(() => {
     const getAppLanguage = async () => {
       const language = await SecureStore.getItemAsync("isLanguageSelected");
-      setFirstTime(language);
+      setFirstTime(language ? language : "new");
     };
     getAppLanguage();
   }, []);
@@ -28,7 +28,6 @@ export const MainNavigator = () => {
     <Navigator
       screenOptions={{ headerTitle: "", headerTransparent: true }}
       initialRouteName={firstTime ? "Auth" : "AppLanguage"}
-      
     >
       <Screen name="AppLanguage" component={AppLanguage} />
       <Screen
