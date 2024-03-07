@@ -13,7 +13,7 @@ export const sendCodeToMobile = (body: any) => {
 };
 
 export const verifyCode = (body: any) => {
-  return axiosClient.post("/auth/email/verify", body);
+  return axiosClient.post("/auth/mobile/verify", body);
 };
 
 export const getLoginStatus = () => {

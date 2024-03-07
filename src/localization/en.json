@@ -40,5 +40,10 @@
     "title": "Enter Code",
     "subtextPartOne": "We have sent you a code to",
     "subtextPartTwo": "please enter the code below."
+  },
+  "NameInput": {
+    "title": "What's your name?",
+    "verificationText": "This will appear on your profile, and you won't be able to change it later.",
+    "firstNameLabel": "First Name"
   }
 }
