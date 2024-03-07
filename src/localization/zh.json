@@ -40,5 +40,10 @@
     "title": "验证您的电话号码",
     "subtextPartOne": "我们已将代码发送至",
     "subtextPartTwo": "请在下面输入。"
+  },
+  "NameInput": {
+    "title": "您的名字是？",
+    "verificationText": "这将显示在您的个人资料中，并且您以后将无法更改它。",
+    "firstNameLabel": "名字"
   }
 }
